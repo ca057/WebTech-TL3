@@ -2,9 +2,9 @@ package model;
 
 public class Module {
 
-	int moduleID;
-	String name;
-	int ects;
+	private int moduleID;
+	private String name;
+	private int ects;
 
 	public Module(int moduleID, String name, int ects) {
 		this.moduleID = moduleID;
@@ -20,7 +20,7 @@ public class Module {
 		this.name = name;
 	}
 
-	public float getEcts() {
+	public int getEcts() {
 		return ects;
 	}
 

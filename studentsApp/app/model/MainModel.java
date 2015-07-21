@@ -40,4 +40,30 @@ public class MainModel {
 		return resultsWithModuleID;
 	}
 
+	public float getAverageGradeOfModule(int moduleID) {
+		List<Result> resultsInModule = getResultsForModule(moduleID);
+
+		float sumOfGradeTimesEcts = 0;
+		float sumOfEcts = 0;
+
+		for (Result result : resultsInModule) {
+			sumOfGradeTimesEcts += result.getGrade() * result.getEcts();
+			sumOfEcts += result.getEcts();
+		}
+
+		return (sumOfEcts != 0) ? sumOfGradeTimesEcts / sumOfEcts : 0;
+	}
+
+	public float getTotalAverageGrade() {
+		float sumOfGradeTimesEcts = 0;
+		float sumOfEcts = 0;
+
+		for (Result result : results) {
+			sumOfGradeTimesEcts += result.getGrade() * result.getEcts();
+			sumOfEcts += result.getEcts();
+		}
+
+		return (sumOfEcts != 0) ? sumOfGradeTimesEcts / sumOfEcts : 0;
+	}
+
 }

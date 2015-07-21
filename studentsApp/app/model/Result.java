@@ -1,8 +1,9 @@
 package model;
 
 public class Result extends Module {
-	int resultID;
-	float grade;
+
+	private int resultID;
+	private float grade;
 
 	public Result(int resultID, String name, int ects, float grade, int moduleID) {
 		super(moduleID, name, ects);
