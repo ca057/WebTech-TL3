@@ -13,11 +13,8 @@ public class Application extends Controller {
 
 	private static MainModel model;
 
-	private Application() {
-		model = new MainModel();
-	}
-
 	public static Result index() {
+		model = new MainModel();
 		return ok(index.render(generateListWithAllResults()));
 	}
 

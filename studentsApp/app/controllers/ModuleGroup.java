@@ -13,7 +13,7 @@ public class ModuleGroup {
 
 	private int progress = 0;
 
-	private List<ModuleResult> allResults;
+	public List<ModuleResult> allResults;
 
 	ModuleGroup(String name, int ects) {
 		if (name == null || name.isEmpty() || ects <= 0) {
