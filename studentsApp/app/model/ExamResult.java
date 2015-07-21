@@ -12,6 +12,12 @@ import javax.persistence.ManyToOne;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
+/**
+ * This class represents an exam result.
+ * 
+ * @author Simon
+ *
+ */
 @SuppressWarnings("serial")
 @Entity
 public class ExamResult extends Model {
@@ -34,8 +40,12 @@ public class ExamResult extends Model {
 	@JoinColumn(name = "MODULE_ID")
 	private Module module;
 
-	public ExamResult(int resultID, Module module, String name, int ects, float grade) {
-		this.id = resultID;
+	public ExamResult(Module module, String name, int ects, float grade) {
+		Integer id = 0;
+		for (ExamResult result : all()) {
+			id = Math.max(id, result.getID());
+		}
+		this.id = id;
 		this.module = module;
 
 		setName(name);
@@ -43,7 +53,7 @@ public class ExamResult extends Model {
 		setGrade(grade);
 	}
 
-	public int getResultID() {
+	public int getID() {
 		return id;
 	}
 

@@ -11,20 +11,38 @@ import javax.persistence.OneToMany;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
+/**
+ * This class represents a module group.
+ * 
+ * @author Simon
+ *
+ */
 @SuppressWarnings("serial")
 @Entity
 public class Module extends Model {
-
+	/**
+	 * The ID of the module group. The column's name in the database is
+	 * accordingly set as "MODULE_ID".
+	 */
 	@Id
 	@Column(name = "MODULE_ID")
 	private Integer id;
-
+	/**
+	 * The name attribute of the module group. Must not be <code>null</code>.
+	 */
 	@Required
 	private String name;
-
+	/**
+	 * The number of ECTS associated with this module group. Must not be
+	 * <code>null</code> or less than zero.
+	 */
 	@Required
 	private int ects;
-
+	/**
+	 * With a module group, a list of exam results are associated. Can be
+	 * <code>null</code>. If module group is removed, associated exam results
+	 * will also be removed.
+	 */
 	@OneToMany(mappedBy = "module", cascade = CascadeType.REMOVE)
 	private List<ExamResult> results;
 
