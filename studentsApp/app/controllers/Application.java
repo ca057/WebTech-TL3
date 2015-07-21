@@ -7,7 +7,7 @@ import views.html.index;
 public class Application extends Controller {
 
 	public static Result index() {
-		return ok(index.render("studentsApp is ready for developing, let´s get started!"));
+		return ok(index.render(""));
 	}
 
 }
