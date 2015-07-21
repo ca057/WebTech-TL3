@@ -10,11 +10,11 @@ public class ResultCtrl extends Controller {
 	}
 
 	public static Result newResult() {
-		return TODO;
+		return ok(views.html.addresult.render());
 	}
 
 	public static Result changeResult() {
-		return TODO;
+		return ok(views.html.editresult.render());
 	}
 
 	public static Result addResult(int moduleid) {

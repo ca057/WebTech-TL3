@@ -10,11 +10,11 @@ public class ModuleCtrl extends Controller {
 	}
 
 	public static Result newModule() {
-		return TODO;
+		return ok(views.html.addmodule.render());
 	}
 
 	public static Result changeModule() {
-		return TODO;
+		return ok(views.html.editmodule.render());
 	}
 
 	public static Result addModule(int id) {

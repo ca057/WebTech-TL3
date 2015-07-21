@@ -1,9 +1,9 @@
-@(allResults: java.util.List[ModuleGroup])
+@(allResults: java.util.List[model.Module])
 
 @main("studentsApp") { 
     <h1>studentsApp - Willkommen</h1>
     <h2>Aktionen</h2>
-    	@actions.actions()
+    	@actions()
     <h2>Deine Studiumsübersicht</h2>
     	@results(allResults)
 }

@@ -3,34 +3,31 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.MainModel;
 import model.Module;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
 
+/**
+ * 
+ * @author ca
+ *
+ */
 public class Application extends Controller {
 
-	private static MainModel model;
-
+	/**
+	 * 
+	 * @return
+	 */
 	public static Result index() {
-		model = new MainModel();
-		return ok(index.render(generateListWithAllResults()));
+		return ok(views.html.index.render(generateListWithAllResults()));
 	}
 
 	/**
 	 * 
 	 * @return
 	 */
-	private static List<ModuleGroup> generateListWithAllResults() {
-		List<ModuleGroup> allModulesAndResults = new ArrayList<ModuleGroup>();
-
-		if (!model.getAllModules().isEmpty()) {
-			for (Module m : model.getAllModules()) {
-				allModulesAndResults
-						.add(new ModuleGroup(m.getName(), m.getEcts(), model.getResultsForModule(m.getModuleID())));
-			}
-		}
+	private static List<Module> generateListWithAllResults() {
+		List<Module> allModulesAndResults = new ArrayList<Module>();
 
 		return allModulesAndResults;
 	}
