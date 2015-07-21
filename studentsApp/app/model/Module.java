@@ -1,8 +1,9 @@
 package model;
 
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import play.data.validation.Constraints.Required;
 
 @Entity
 public class Module {
@@ -10,10 +11,10 @@ public class Module {
 	@Id
 	private int moduleID;
 
-	@Basic
+	@Required
 	private String name;
 
-	@Basic
+	@Required
 	private int ects;
 
 	public Module(int moduleID, String name, int ects) {
