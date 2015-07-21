@@ -39,13 +39,22 @@ public class Module extends Model {
 	@Required
 	private int ects;
 	/**
-	 * With a module group, a list of exam results are associated. Can be
+	 * A list of exam results associated with module group. Can be
 	 * <code>null</code>. If module group is removed, associated exam results
 	 * will also be removed.
 	 */
 	@OneToMany(mappedBy = "module", cascade = CascadeType.REMOVE)
 	private List<ExamResult> results;
 
+	/**
+	 * Constructor of {@code Module}.
+	 * 
+	 * @param name
+	 *            Name of the module. Must not be <code>null</code>.
+	 * @param ects
+	 *            Number of ECTS associated with this module. Must not be
+	 *            <code>null</code>.
+	 */
 	public Module(String name, int ects) {
 		Integer id = 0;
 		for (Module module : all()) {
@@ -61,21 +70,14 @@ public class Module extends Model {
 		return id;
 	}
 
-	public int getEcts() {
-		return ects;
-	}
-
-	public void setEcts(int ects) {
-		if (ects < 0) {
-			throw new IllegalArgumentException("Illegal parameters for ects");
-		}
-		this.ects = ects;
-	}
-
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 *            Name of the module. Must not be <code>null</code>.
+	 */
 	public void setName(String name) {
 		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException("Illegal parameters for name");
@@ -83,7 +85,33 @@ public class Module extends Model {
 		this.name = name;
 	}
 
-	public void addModuleResult(ExamResult result) {
+	public int getEcts() {
+		return ects;
+	}
+
+	/**
+	 * @param ects
+	 *            Number of ECTS associated with this module. Must not be
+	 *            <code>null</code>.
+	 */
+	public void setEcts(int ects) {
+		if (ects < 0) {
+			throw new IllegalArgumentException("Illegal parameters for ects");
+		}
+		this.ects = ects;
+	}
+
+	/**
+	 * Adds a {@code ExamResult} to this {@code Module}.
+	 * 
+	 * @param result
+	 *            An {@code ExamResult} to add to context. Must not be
+	 *            <code>null</code>.
+	 */
+	public void addExamResult(ExamResult result) {
+		if (result == null) {
+			throw new IllegalArgumentException("Result could not be added to Module");
+		}
 		this.results.add(result);
 	}
 
@@ -114,14 +142,36 @@ public class Module extends Model {
 
 	public static Finder<Integer, Module> find = new Finder<Integer, Module>(Integer.class, Module.class);
 
+	/**
+	 * @return A complete {@code List} of all {@code Module}s in database.
+	 */
 	public static List<Module> all() {
 		return find.all();
 	}
 
+	/**
+	 * Create a {@code Module} in database.
+	 * 
+	 * @param module
+	 *            The {@code Module} to add. Must not be <code>null</code>.
+	 */
 	public static void create(Module module) {
-		module.save();
+		if (module != null) {
+			module.save();
+		} else {
+			throw new IllegalArgumentException("Module could not be added to database");
+		}
 	}
 
+	/**
+	 * Delete a specific {@code Module} from database.
+	 * 
+	 * <p>
+	 * Warning: All associated {@code ExamResult}s will be removed also.
+	 * 
+	 * @param id
+	 *            The ID of the {@code Module} to delete from database.
+	 */
 	public static void delete(Integer id) {
 		find.ref(id).delete();
 	}
