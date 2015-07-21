@@ -15,7 +15,7 @@ public class ModuleGroup {
 
 	private List<ModuleResult> allResults;
 
-	private ModuleGroup(String name, int ects) {
+	ModuleGroup(String name, int ects) {
 		if (name == null || name.isEmpty() || ects <= 0) {
 			throw new IllegalArgumentException("The given values for the ModuleGroup are not valid.");
 		}
@@ -25,7 +25,7 @@ public class ModuleGroup {
 		progress = computeProgress();
 	}
 
-	private ModuleGroup(String name, int ects, List<ModuleResult> allResults) {
+	ModuleGroup(String name, int ects, List<ModuleResult> allResults) {
 		if (name == null || name.isEmpty() || ects <= 0 || allResults == null || allResults.isEmpty()) {
 			throw new IllegalArgumentException("The given values for the ModuleGroup are not valid.");
 		}
