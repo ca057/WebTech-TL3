@@ -2,8 +2,9 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
-public class MainModel {
+public class MainModel extends Observable {
 
 	List<Module> modules;
 	List<ModuleResult> results;
@@ -14,9 +15,13 @@ public class MainModel {
 
 	public void addModule(int moduleID, String name, int ects) {
 		modules.add(new Module(moduleID, name, ects));
+		setChanged();
+		notifyObservers();
 	}
 
 	public void addResult(int resultID, String name, int ects, float grade, int moduleID) {
+		setChanged();
+		notifyObservers();
 		results.add(new ModuleResult(resultID, name, ects, grade, moduleID));
 	}
 

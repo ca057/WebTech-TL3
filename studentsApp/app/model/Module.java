@@ -7,6 +7,8 @@ public class Module {
 	private int ects;
 
 	public Module(int moduleID, String name, int ects) {
+		setName(name);
+		setEcts(ects);
 		this.moduleID = moduleID;
 		this.name = name;
 		this.ects = ects;
@@ -17,6 +19,9 @@ public class Module {
 	}
 
 	public void setName(String name) {
+		if (name == null || name.isEmpty()) {
+			throw new IllegalArgumentException("Illegal parameters for  name");
+		}
 		this.name = name;
 	}
 
@@ -25,6 +30,9 @@ public class Module {
 	}
 
 	public void setEcts(int ects) {
+		if (ects < 0) {
+			throw new IllegalArgumentException("Illegal parameters for ects");
+		}
 		this.ects = ects;
 	}
 
