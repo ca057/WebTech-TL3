@@ -53,7 +53,7 @@ public class Module extends Model {
 	 *            Name of the module. Must not be <code>null</code>.
 	 * @param ects
 	 *            Number of ECTS associated with this module. Must not be
-	 *            <code>null</code>.
+	 *            <code>null</code> or smaller than zero.
 	 */
 	public Module(String name, int ects) {
 		Integer id = 0;
@@ -92,7 +92,7 @@ public class Module extends Model {
 	/**
 	 * @param ects
 	 *            Number of ECTS associated with this module. Must not be
-	 *            <code>null</code>.
+	 *            <code>null</code> or smaller than zero.
 	 */
 	public void setEcts(int ects) {
 		if (ects < 0) {
