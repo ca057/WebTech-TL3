@@ -26,7 +26,7 @@ public class Module extends Model {
 	private int ects;
 
 	@OneToMany(mappedBy = "module", cascade = CascadeType.REMOVE)
-	private List<ModuleResult> results;
+	private List<ExamResult> results;
 
 	public Module(String name, int ects) {
 		Integer id = 0;
@@ -65,7 +65,7 @@ public class Module extends Model {
 		this.name = name;
 	}
 
-	public void addModuleResult(ModuleResult result) {
+	public void addModuleResult(ExamResult result) {
 		this.results.add(result);
 	}
 
@@ -86,7 +86,7 @@ public class Module extends Model {
 		float sumOfGradeTimesEcts = 0;
 		float sumOfEcts = 0;
 
-		for (ModuleResult result : this.results) {
+		for (ExamResult result : this.results) {
 			sumOfGradeTimesEcts += result.getGrade() * result.getEcts();
 			sumOfEcts += result.getEcts();
 		}

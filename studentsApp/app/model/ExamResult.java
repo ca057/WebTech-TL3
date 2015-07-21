@@ -14,7 +14,7 @@ import play.db.ebean.Model;
 
 @SuppressWarnings("serial")
 @Entity
-public class ModuleResult extends Model {
+public class ExamResult extends Model {
 
 	@Id
 	@Column(name = "RESULT_ID")
@@ -34,7 +34,7 @@ public class ModuleResult extends Model {
 	@JoinColumn(name = "MODULE_ID")
 	private Module module;
 
-	public ModuleResult(int resultID, Module module, String name, int ects, float grade) {
+	public ExamResult(int resultID, Module module, String name, int ects, float grade) {
 		this.id = resultID;
 		this.module = module;
 
@@ -100,7 +100,7 @@ public class ModuleResult extends Model {
 		float sumOfGradeTimesEcts = 0;
 		float sumOfEcts = 0;
 
-		for (ModuleResult result : all()) {
+		for (ExamResult result : all()) {
 			sumOfGradeTimesEcts += result.getGrade() * result.getEcts();
 			sumOfEcts += result.getEcts();
 		}
@@ -108,13 +108,13 @@ public class ModuleResult extends Model {
 		return (sumOfEcts != 0) ? sumOfGradeTimesEcts / sumOfEcts : 0;
 	}
 
-	public static Finder<Integer, ModuleResult> find = new Finder<>(Integer.class, ModuleResult.class);
+	public static Finder<Integer, ExamResult> find = new Finder<>(Integer.class, ExamResult.class);
 
-	public static List<ModuleResult> all() {
+	public static List<ExamResult> all() {
 		return find.all();
 	}
 
-	public static void create(ModuleResult result) {
+	public static void create(ExamResult result) {
 		result.save();
 	}
 

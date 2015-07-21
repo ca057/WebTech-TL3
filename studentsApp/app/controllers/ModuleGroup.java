@@ -3,7 +3,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.ModuleResult;
+import model.ExamResult;
 
 public class ModuleGroup {
 
@@ -13,7 +13,7 @@ public class ModuleGroup {
 
 	private int progress = 0;
 
-	public List<ModuleResult> allResults;
+	public List<ExamResult> allResults;
 
 	ModuleGroup(String name, int ects) {
 		if (name == null || name.isEmpty() || ects <= 0) {
@@ -21,11 +21,11 @@ public class ModuleGroup {
 		}
 		moduleName = name;
 		this.ects = ects;
-		allResults = new ArrayList<ModuleResult>();
+		allResults = new ArrayList<ExamResult>();
 		progress = computeProgress();
 	}
 
-	ModuleGroup(String name, int ects, List<ModuleResult> allResults) {
+	ModuleGroup(String name, int ects, List<ExamResult> allResults) {
 		if (name == null || name.isEmpty() || ects <= 0 || allResults == null || allResults.isEmpty()) {
 			throw new IllegalArgumentException("The given values for the ModuleGroup are not valid.");
 		}
@@ -35,7 +35,7 @@ public class ModuleGroup {
 		progress = computeProgress();
 	}
 
-	public void setResultList(List<ModuleResult> allResults) {
+	public void setResultList(List<ExamResult> allResults) {
 		if (allResults == null || allResults.isEmpty()) {
 			throw new IllegalArgumentException("The given list with all results is not valid or contains no elements.");
 		}
@@ -66,7 +66,7 @@ public class ModuleGroup {
 	/**
 	 * @return the allResults
 	 */
-	public List<ModuleResult> getAllResults() {
+	public List<ExamResult> getAllResults() {
 		return allResults;
 	}
 
@@ -76,7 +76,7 @@ public class ModuleGroup {
 	 */
 	private int computeProgress() {
 		int tmp = 0;
-		for (ModuleResult mr : allResults) {
+		for (ExamResult mr : allResults) {
 			tmp += mr.getEcts();
 		}
 		return (100 / ects) * tmp;
