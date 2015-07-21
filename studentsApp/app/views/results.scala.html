@@ -2,12 +2,13 @@
 
 <h3>Einzelergbnisse</h3>
 <table>
-	<tr><th colspan="3">modulname</th></tr>
-	<tr><td>ERGEBNISNAME</td><td>NOTE</td><td>ECTS</td></tr>
-	<tr><td colspan="1"><progress value="0" max="100"></progress></td><td colspan="2">##/## ECTS</td></tr>
-	<tr><th colspan="3">Modulgruppe</th></tr>
-	<tr><td>ERGEBNISNAME</td><td>NOTE</td><td>ECTS</td></tr>
-	<tr><td colspan="1"><progress value="0" max="100"></progress></td><td colspan="2">##/## ECTS</td></tr>
+	for(module <- resultList) {
+		<tr><th colspan="3">module.getModuleName()</th></tr>
+		for (result <- module.getResultList()) {
+			<tr><td>result.getName()</td><td>result.getGrade()</td><td>result.getEcts()</td></tr>
+		}
+		<tr><td colspan="1"><progress value="module.progress" max="100"></progress></td><td colspan="2">module.getProgress()/module.getEcts() ECTS</td></tr>
+	}
 </table>
 
 <p></p>
