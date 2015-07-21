@@ -1,9 +1,21 @@
 package model;
 
+import javax.annotation.CheckForNull;
+import javax.persistence.Basic;
+import javax.persistence.Id;
+
 public class Module {
 
+	@Id
+	@CheckForNull
 	private int moduleID;
+
+	@Basic
+	@CheckForNull
 	private String name;
+
+	@Basic
+	@CheckForNull
 	private int ects;
 
 	public Module(int moduleID, String name, int ects) {

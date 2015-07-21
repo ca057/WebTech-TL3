@@ -6,23 +6,32 @@ import java.util.Observable;
 
 public class MainModel extends Observable {
 
-	List<Module> modules;
-	List<ModuleResult> results;
+	private List<Module> modules;
+	private List<ModuleResult> results;
+
+	private int currentModuleID;
+	private int currentResultID;
 
 	public MainModel() {
+		modules = new LinkedList<>();
+		results = new LinkedList<>();
 
+		currentModuleID = 0;
+		currentResultID = 0;
 	}
 
-	public void addModule(int moduleID, String name, int ects) {
-		modules.add(new Module(moduleID, name, ects));
+	public void addModule(String name, int ects) {
+		modules.add(new Module(currentModuleID, name, ects));
+		currentModuleID++;
 		setChanged();
 		notifyObservers();
 	}
 
-	public void addResult(int resultID, String name, int ects, float grade, int moduleID) {
+	public void addResult(String name, int ects, float grade, int moduleID) {
+		results.add(new ModuleResult(currentResultID, name, ects, grade, moduleID));
+		currentResultID++;
 		setChanged();
 		notifyObservers();
-		results.add(new ModuleResult(resultID, name, ects, grade, moduleID));
 	}
 
 	public List<Module> getAllModules() {
