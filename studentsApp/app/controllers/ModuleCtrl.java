@@ -17,7 +17,7 @@ public class ModuleCtrl extends Controller {
 		return ok(views.html.editmodule.render());
 	}
 
-	public static Result addModule(int id) {
+	public static Result addModule(String name, int ects) {
 		return TODO;
 	}
 

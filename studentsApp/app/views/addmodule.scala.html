@@ -1,5 +1,12 @@
 <h1>Neue Modulgruppe hinzufügen</h1>
 
-<!-- do some stuff here -->
+<form action="/addmodule/add" method="post">
+	<fieldset>
+		<legend>Neue Modulgruppe anlegen</legend>
+		Name: <input name="name" type="text" required><br>
+		ECTS: <input name="ects" type="text" required><br>
+		<button type="submit">Modulgruppe hinzufügen</button>
+	</fieldset>
+</form>
 
 <p><a href="/">zurück zur Startseite</a></p>
