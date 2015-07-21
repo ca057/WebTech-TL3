@@ -1,17 +1,16 @@
 package model;
 
-import javax.annotation.CheckForNull;
 import javax.persistence.Basic;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class ModuleResult extends Module {
 
 	@Id
-	@CheckForNull
 	private int resultID;
 
 	@Basic
-	@CheckForNull
 	private float grade;
 
 	public ModuleResult(int resultID, String name, int ects, float grade, int moduleID) {
