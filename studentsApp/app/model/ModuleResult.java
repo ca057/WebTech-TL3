@@ -1,11 +1,11 @@
 package model;
 
-public class Result extends Module {
+public class ModuleResult extends Module {
 
 	private int resultID;
 	private float grade;
 
-	public Result(int resultID, String name, int ects, float grade, int moduleID) {
+	public ModuleResult(int resultID, String name, int ects, float grade, int moduleID) {
 		super(moduleID, name, ects);
 		this.resultID = resultID;
 		this.grade = grade;

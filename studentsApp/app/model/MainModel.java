@@ -6,7 +6,7 @@ import java.util.List;
 public class MainModel {
 
 	List<Module> modules;
-	List<Result> results;
+	List<ModuleResult> results;
 
 	public MainModel() {
 
@@ -17,21 +17,21 @@ public class MainModel {
 	}
 
 	public void addResult(int resultID, String name, int ects, float grade, int moduleID) {
-		results.add(new Result(resultID, name, ects, grade, moduleID));
+		results.add(new ModuleResult(resultID, name, ects, grade, moduleID));
 	}
 
 	public List<Module> getAllModules() {
 		return modules;
 	}
 
-	public List<Result> getAllResults() {
+	public List<ModuleResult> getAllResults() {
 		return results;
 	}
 
-	public List<Result> getResultsForModule(int moduleID) {
-		List<Result> resultsWithModuleID = new LinkedList<>();
+	public List<ModuleResult> getResultsForModule(int moduleID) {
+		List<ModuleResult> resultsWithModuleID = new LinkedList<>();
 
-		for (Result result : results) {
+		for (ModuleResult result : results) {
 			if (result.getResultID() == moduleID) {
 				resultsWithModuleID.add(result);
 			}
@@ -41,12 +41,12 @@ public class MainModel {
 	}
 
 	public float getAverageGradeOfModule(int moduleID) {
-		List<Result> resultsInModule = getResultsForModule(moduleID);
+		List<ModuleResult> resultsInModule = getResultsForModule(moduleID);
 
 		float sumOfGradeTimesEcts = 0;
 		float sumOfEcts = 0;
 
-		for (Result result : resultsInModule) {
+		for (ModuleResult result : resultsInModule) {
 			sumOfGradeTimesEcts += result.getGrade() * result.getEcts();
 			sumOfEcts += result.getEcts();
 		}
@@ -58,7 +58,7 @@ public class MainModel {
 		float sumOfGradeTimesEcts = 0;
 		float sumOfEcts = 0;
 
-		for (Result result : results) {
+		for (ModuleResult result : results) {
 			sumOfGradeTimesEcts += result.getGrade() * result.getEcts();
 			sumOfEcts += result.getEcts();
 		}
