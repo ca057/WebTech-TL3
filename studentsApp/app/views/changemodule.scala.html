@@ -1,0 +1,26 @@
+@(warning: String)
+
+@main("studentsApp - Modulgruppe bearbeiten"){
+	<h1>Modulgruppe bearbeiten</h1>
+	
+	@if(warning.length() != 0) {
+		<p>Ein Fehler ist aufgetreten: @warning</p>
+	}
+	
+	<form action="@routes.ModuleCtrl.selectModuleEditingMode()" method="post">
+		<fieldset>
+			<legend>Modulgruppe bearbeiten oder löschen</legend>
+			<input type="radio" id="edMod" name="moduleEditingMode" value="edit"><label for="edMod">Modulgruppe bearbeiten</label><br>
+			<input type="radio" id="delMod" name="moduleEditingMode" value="delete"><label for="delMod">Modulgruppe löschen</label><br>
+			Modul auswählen: 
+			<select name="module" required>
+				@for(module <- models.Module.all()) {
+					<option value="@module.id">@module.name</option>
+				}
+			</select><br>
+			<button type="submit">Änderung durchführen</button>
+		</fieldset>
+	</form>
+	
+	<p><a href="/">zurück zur Startseite</a></p>
+}
