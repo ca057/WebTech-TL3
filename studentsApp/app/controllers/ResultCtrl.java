@@ -36,7 +36,7 @@ public class ResultCtrl extends Controller {
 		try {
 			ects = Integer.parseInt(dynamicForm.get("ects"));
 		} catch (NumberFormatException e) {
-			return ok(views.html.addmodule
+			return ok(views.html.addresult
 					.render("Die eingegebenen ECTS-Punkte sind keine Zahl und konnten nicht verarbeitet werden."));
 		}
 		// check if grade is number
@@ -44,12 +44,12 @@ public class ResultCtrl extends Controller {
 		try {
 			grade = Float.valueOf(dynamicForm.get("grade"));
 		} catch (NumberFormatException e) {
-			return ok(views.html.addmodule
+			return ok(views.html.addresult
 					.render("Die eingegebene Note ist keine Zahl und konnte nicht verarbeitet werden."));
 		}
 		// check if grade and ects are larger than 0
 		if (ects < 0 || grade <= 0) {
-			return ok(views.html.addmodule
+			return ok(views.html.addresult
 					.render("Die eingegebenen ECTS-Punkte dürfen nicht negativ und die Note muss größer als 0 sein."));
 		} else {
 			ExamResult.create(new ExamResult(Module.getModuleById(moduleId), name, ects, grade));

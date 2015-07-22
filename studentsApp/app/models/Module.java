@@ -61,7 +61,7 @@ public class Module extends Model {
 	public Module(String name, int ects) {
 		Integer id = 0;
 		for (Module module : all()) {
-			id = Math.max(id, module.getID());
+			id = Math.max(id, module.getID() + 1);
 		}
 		this.id = id;
 
@@ -241,5 +241,10 @@ public class Module extends Model {
 	 */
 	public static void delete(Integer id) {
 		find.ref(id).delete();
+	}
+
+	@Override
+	public String toString() {
+		return "Module [id=" + id + ", name=" + name + "]";
 	}
 }
