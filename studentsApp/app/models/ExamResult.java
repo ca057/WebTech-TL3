@@ -108,6 +108,9 @@ public class ExamResult extends Model {
 	}
 
 	public void setModule(Module module) {
+		if (module == null) {
+			throw new IllegalArgumentException("Module could not be set");
+		}
 		this.module = module;
 	}
 
