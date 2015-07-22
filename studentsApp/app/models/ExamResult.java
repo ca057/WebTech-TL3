@@ -1,3 +1,4 @@
+
 package models;
 
 import java.util.List;
@@ -104,6 +105,13 @@ public class ExamResult extends Model {
 
 	public float getGrade() {
 		return grade;
+	}
+
+	public void setModule(Module module) {
+		if (module == null) {
+			throw new IllegalArgumentException("Module could not be set");
+		}
+		this.module = module;
 	}
 
 	/**
