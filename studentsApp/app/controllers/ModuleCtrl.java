@@ -37,8 +37,8 @@ public class ModuleCtrl extends Controller {
 					.render("Die eingegebenen ECTS-Punkte sind keine Zahl und konnten nicht verarbeitet werden."));
 		}
 
-		if (ects <= 0) {
-			return ok(views.html.addmodule.render("Die eingegebenen ECTS-Punkte müssen größer als 0 sein."));
+		if (ects < 0) {
+			return ok(views.html.addmodule.render("Die eingegebenen ECTS-Punkte dürfen nicht negativ sein."));
 		} else {
 			Module.create(new Module(name, ects));
 			return Application.index();
