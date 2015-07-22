@@ -90,6 +90,7 @@ public class Module extends Model {
 			throw new IllegalArgumentException("Illegal parameters for name");
 		}
 		this.name = name;
+		this.update();
 	}
 
 	/**
@@ -102,6 +103,7 @@ public class Module extends Model {
 			throw new IllegalArgumentException("Illegal parameters for ects");
 		}
 		this.ects = ects;
+		this.update();
 	}
 
 	/**
