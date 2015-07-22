@@ -62,29 +62,35 @@ public class ModuleCtrl extends Controller {
 		DynamicForm form = Form.form().bindFromRequest();
 		Module module = Module.getModuleById(Integer.parseInt(form.get("editModule")));
 		String name = form.get("name");
+		System.out.println(module.getName());
+		System.out.println(form.get("name"));
 		if (form.get("name").isEmpty()) {
 			System.out.println(form.get("name"));
 			name = module.getName();
 		}
+		module.setName(name);
+		System.out.println(module.getName());
+
 		int ects = 0;
-		if (form.get("ects").isEmpty()) {
-			ects = module.getEcts();
-		} else {
+		System.out.println(module.getEcts());
+		System.out.println(form.get("ects"));
+		if (!form.get("ects").isEmpty()) {
 			try {
 				ects = Integer.parseInt(form.get("ects"));
+				if (ects < 0) {
+					return ok(views.html.editmodule.render("Die eingegebenen ECTS-Punkte dürfen nicht negativ sein.",
+							module));
+				} else {
+					module.setEcts(ects);
+					System.out.println(module.getEcts());
+				}
 			} catch (NumberFormatException e) {
 				return ok(views.html.editmodule.render(
 						"Die eingegebenen ECTS-Punkte sind keine Zahl und konnten nicht verarbeitet werden.", module));
 			}
 		}
 
-		if (ects < 0) {
-			return ok(views.html.editmodule.render("Die eingegebenen ECTS-Punkte dürfen nicht negativ sein.", module));
-		} else {
-			module.setName(name);
-			module.setEcts(ects);
-			return Application.index();
-		}
+		return Application.index();
 	}
 
 	public static Result deleteModule() {
