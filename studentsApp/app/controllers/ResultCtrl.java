@@ -1,6 +1,6 @@
 package controllers;
 
-import model.ExamResult;
+import models.ExamResult;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
