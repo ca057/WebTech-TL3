@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -52,7 +51,7 @@ public class ExamResult extends Model {
 	 * updated.
 	 */
 	@Required
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "MODULE_ID")
 	public Module module;
 
@@ -73,7 +72,7 @@ public class ExamResult extends Model {
 	public ExamResult(Module module, String name, int ects, float grade) {
 		Integer id = 0;
 		for (ExamResult result : all()) {
-			id = Math.max(id, result.getID());
+			id = Math.max(id, result.getID() + 1);
 		}
 		this.id = id;
 		if (module != null) {
@@ -191,9 +190,10 @@ public class ExamResult extends Model {
 	 *            The {@code ExamResult} to add. Must not be <code>null</code>.
 	 */
 	public static void create(ExamResult result) {
+		System.out.println(result);
 		if (result != null) {
-			result.save();
 			result.getModule().addExamResult(result);
+			result.save();
 		} else {
 			throw new IllegalArgumentException("Result could not be added.");
 		}
@@ -210,4 +210,11 @@ public class ExamResult extends Model {
 		find.ref(id).getModule().removeExamResult(find.ref(id));
 		find.ref(id).delete();
 	}
+
+	@Override
+	public String toString() {
+		return "ExamResult [id=" + id + ", name=" + name + ", ects=" + ects + ", grade=" + grade + ", module=" + module
+				+ "]";
+	}
+
 }
