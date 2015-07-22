@@ -107,6 +107,10 @@ public class ExamResult extends Model {
 		return grade;
 	}
 
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
 	/**
 	 * @param name
 	 *            Name of the exam result. Must not be <code>null</code>.
