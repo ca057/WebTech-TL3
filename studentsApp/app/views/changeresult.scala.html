@@ -1,0 +1,26 @@
+@(warning: String)
+
+@main("studentsApp - Ergebnis bearbeiten"){
+	<h1>Ergebnis bearbeiten</h1>
+	
+	@if(warning.length() != 0) {
+		<p>Ein Fehler ist aufgetreten: @warning</p>
+	}
+	
+	<form action="@routes.ResultCtrl.selectResultEditingMode()" method="post">
+		<fieldset>
+			<legend>Ergebnis bearbeiten oder löschen</legend>
+			<input type="radio" id="edRes" name="resultEditingMode" value="edit" required><label for="edRes">Ergebnis bearbeiten</label><br>
+			<input type="radio" id="delRes" name="resultEditingMode" value="delete" required><label for="delRes">Ergebnis löschen</label><br>
+			Ergebnis auswählen: 
+			<select name="module" required>
+				@for(result <- models.ExamResult.all()) {
+					<option value="@result.id">@result.name</option>
+				}
+			</select><br>
+			<button type="submit">Änderung durchführen</button>
+		</fieldset>
+	</form>
+	
+	<p><a href="/">zurück zur Startseite</a></p>
+}

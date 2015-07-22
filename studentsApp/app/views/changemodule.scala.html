@@ -12,7 +12,7 @@
 			<legend>Modulgruppe bearbeiten oder löschen</legend>
 			<input type="radio" id="edMod" name="moduleEditingMode" value="edit" required><label for="edMod">Modulgruppe bearbeiten</label><br>
 			<input type="radio" id="delMod" name="moduleEditingMode" value="delete" required><label for="delMod">Modulgruppe löschen</label><br>
-			Modul auswählen: 
+			Modul auswählen:
 			<select name="module" required>
 				@for(module <- models.Module.all()) {
 					<option value="@module.id">@module.name</option>
