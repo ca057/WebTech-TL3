@@ -61,11 +61,11 @@ public class ResultCtrl extends Controller {
 		}
 	}
 
-	public static Result editResult(int id) {
+	public static Result editResult() {
 		return TODO;
 	}
 
-	public static Result deleteResult(int id) {
+	public static Result deleteResult() {
 		return TODO;
 	}
 
