@@ -1,5 +1,6 @@
 package controllers;
 
+import model.Module;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -7,8 +8,14 @@ import play.mvc.Result;
 
 public class ModuleCtrl extends Controller {
 
+	static Form<Module> moduleForm = Form.form(Module.class);
+
 	public ModuleCtrl() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public static Result modules() {
+		return TODO;
 	}
 
 	public static Result newModule() {

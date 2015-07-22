@@ -1,12 +1,20 @@
 package controllers;
 
+import model.ExamResult;
+import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 
 public class ResultCtrl extends Controller {
 
+	static Form<ExamResult> moduleForm = Form.form(ExamResult.class);
+
 	public ResultCtrl() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public static Result examResults() {
+		return TODO;
 	}
 
 	public static Result newResult() {
