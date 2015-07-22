@@ -160,7 +160,7 @@ public class Module extends Model {
 	/**
 	 * @return The current progress on this module as {@code Float}.
 	 */
-	public Float getModuleProgress() {
+	public static Float getModuleProgress() {
 		int sumOfResultEcts = 0;
 
 		for (ExamResult result : results) {
@@ -177,7 +177,7 @@ public class Module extends Model {
 	/**
 	 * @return The current overall progress of the student as {@code Float}.
 	 */
-	public Float getOverallProgress() {
+	public static Float getOverallProgress() {
 		int sumOfModuleEcts = 0;
 		int sumOfResultEcts = 0;
 

@@ -7,10 +7,10 @@
 	@for(result <- module.getExamResults()) {
 		<tr><td>@result.name</td><td>Note: @result.grade</td><td>@result.ects</td></tr>
 	}
-	<tr><td colspan="2"><progress value="" max="100"></progress></td><td>Durchschnittsnote: @module.getAverageGradeOfModule()</td></tr>
+	<tr><td colspan="2"><progress value="@module.getModuleProgress()" max="100"></progress></td><td>Durchschnittsnote: @module.getAverageGradeOfModule()</td></tr>
 }
 </table>
 
 <h3>Gesamtergebnis</h3>
 <p>Aktueller Notendurchschnitt:</p>
-<p>Aktueller Fortschritt: <progress value="0" max="100"></progress></p>
+<p>Aktueller Fortschritt: <progress value="@models.Module.getOverallProgress()" max="100"></progress></p>
