@@ -13,7 +13,7 @@
 			<input type="radio" id="edRes" name="resultEditingMode" value="edit" required><label for="edRes">Ergebnis bearbeiten</label><br>
 			<input type="radio" id="delRes" name="resultEditingMode" value="delete" required><label for="delRes">Ergebnis löschen</label><br>
 			Ergebnis auswählen: 
-			<select name="module" required>
+			<select name="result" required>
 				@for(result <- models.ExamResult.all()) {
 					<option value="@result.id">@result.name</option>
 				}

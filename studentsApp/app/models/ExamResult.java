@@ -1,3 +1,4 @@
+
 package models;
 
 import java.util.List;
@@ -156,7 +157,7 @@ public class ExamResult extends Model {
 	 * @return The total average grade as {@code Float}, or <code>0</code> if no
 	 *         ECTS were achieved yet.
 	 */
-	public Float getTotalAverageGrade() {
+	public static Float getTotalAverageGrade() {
 		float sumOfGradeTimesEcts = 0;
 		float sumOfEcts = 0;
 
@@ -195,8 +196,8 @@ public class ExamResult extends Model {
 	public static void create(ExamResult result) {
 		System.out.println(result);
 		if (result != null) {
+			result.getModule().addExamResult(result);
 			result.save();
-			find.byId(result.id).module.addExamResult(result);
 		} else {
 			throw new IllegalArgumentException("Result could not be added.");
 		}
