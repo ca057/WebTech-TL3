@@ -242,6 +242,8 @@ public class Module extends Model {
 	 *            The ID of the {@code Module} to delete from database.
 	 */
 	public static void delete(Integer id) {
+		find.ref(id).results = null;
+		find.ref(id).update();
 		find.ref(id).delete();
 	}
 

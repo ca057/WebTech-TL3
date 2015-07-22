@@ -195,8 +195,8 @@ public class ExamResult extends Model {
 	public static void create(ExamResult result) {
 		System.out.println(result);
 		if (result != null) {
-			result.getModule().addExamResult(result);
 			result.save();
+			find.byId(result.id).module.addExamResult(result);
 		} else {
 			throw new IllegalArgumentException("Result could not be added.");
 		}
