@@ -26,25 +26,25 @@ public class Module extends Model {
 	 */
 	@Id
 	@Column(name = "MODULE_ID")
-	private Integer id;
+	public Integer id;
 	/**
 	 * The name attribute of the module group. Must not be <code>null</code>.
 	 */
 	@Required
-	private String name;
+	public String name;
 	/**
 	 * The number of ECTS associated with this module group. Must not be
 	 * <code>null</code> or less than zero.
 	 */
 	@Required
-	private int ects;
+	public int ects;
 	/**
 	 * A list of exam results associated with module group. Can be
 	 * <code>null</code>. If module group is removed, associated exam results
 	 * will also be removed.
 	 */
 	@OneToMany(mappedBy = "module", cascade = CascadeType.REMOVE)
-	private List<ExamResult> results;
+	public List<ExamResult> results;
 
 	/**
 	 * Constructor of {@code Module}.
