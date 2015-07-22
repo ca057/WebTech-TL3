@@ -1,6 +1,6 @@
 package controllers;
 
-import model.Module;
+import models.Module;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;

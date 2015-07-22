@@ -1,4 +1,4 @@
-package model;
+package models;
 
 import java.util.List;
 
@@ -74,6 +74,10 @@ public class Module extends Model {
 		return name;
 	}
 
+	public int getEcts() {
+		return ects;
+	}
+
 	/**
 	 * @param name
 	 *            Name of the module. Must not be <code>null</code>.
@@ -83,10 +87,6 @@ public class Module extends Model {
 			throw new IllegalArgumentException("Illegal parameters for name");
 		}
 		this.name = name;
-	}
-
-	public int getEcts() {
-		return ects;
 	}
 
 	/**

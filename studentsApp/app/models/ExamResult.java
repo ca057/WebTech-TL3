@@ -1,4 +1,4 @@
-package model;
+package models;
 
 import java.util.List;
 
@@ -99,6 +99,14 @@ public class ExamResult extends Model {
 		return name;
 	}
 
+	public int getEcts() {
+		return ects;
+	}
+
+	public float getGrade() {
+		return grade;
+	}
+
 	/**
 	 * @param name
 	 *            Name of the exam result. Must not be <code>null</code>.
@@ -108,10 +116,6 @@ public class ExamResult extends Model {
 			throw new IllegalArgumentException("Illegal parameters for  name");
 		}
 		this.name = name;
-	}
-
-	public int getEcts() {
-		return ects;
 	}
 
 	/**
@@ -124,10 +128,6 @@ public class ExamResult extends Model {
 			throw new IllegalArgumentException("Illegal parameters for ects");
 		}
 		this.ects = ects;
-	}
-
-	public float getGrade() {
-		return grade;
 	}
 
 	/**

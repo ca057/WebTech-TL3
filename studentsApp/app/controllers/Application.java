@@ -3,7 +3,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Module;
+import models.Module;
 import play.mvc.Controller;
 import play.mvc.Result;
 
