@@ -19,7 +19,7 @@ public class Application extends Controller {
 	 * @return
 	 */
 	public static Result index() {
-		return ok(views.html.index.render(generateListWithAllResults()));
+		return ok(views.html.index.render());
 	}
 
 	/**
