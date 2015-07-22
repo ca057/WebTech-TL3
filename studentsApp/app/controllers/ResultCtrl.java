@@ -7,8 +7,16 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+/**
+ * Controller for managing all actions associated with {@link ExamResult}s.
+ *
+ */
 public class ResultCtrl extends Controller {
 
+	/**
+	 * 
+	 * @return the rendered view for adding new results with status ok
+	 */
 	public static Result newResult() {
 		return ok(views.html.addresult.render(""));
 	}
@@ -94,6 +102,10 @@ public class ResultCtrl extends Controller {
 				return ok(views.html.editresult.render(
 						"Die eingegebenen ECTS-Punkte sind keine Zahl und konnten nicht verarbeitet werden.", result));
 			}
+		}
+
+		if (!form.get("module").isEmpty()) {
+			result.module = Module.getModuleById(Integer.parseInt(form.get("module")));
 		}
 		return Application.index();
 

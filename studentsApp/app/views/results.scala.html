@@ -7,7 +7,7 @@
 		<tr><th colspan="3">@module.name</th></tr>
 		@if(module.getExamResults() != null && module.getExamResults().length != 0) {
 			@for(result <- module.getExamResults()) {
-				<tr><td>@result.name</td><td>Note: @result.grade</td><td>@result.ects</td></tr>
+				<tr><td>@result.name</td><td>Note: @result.grade</td><td>ECTS: @result.ects</td></tr>
 			}
 		} else {
 			<tr><td colspan="3">Bisher keine Ergebnisse eingetragen!</td></tr>

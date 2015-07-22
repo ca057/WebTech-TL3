@@ -10,9 +10,15 @@
 	<form action="@routes.ResultCtrl.editResult()" method="post">
 		<fieldset>
 			<legend>Ergebnit @result.name bearbeiten</legend>
-			Name: <input name="name" type="text" placeholder="@result.name"><br>
+			Name: <input name="name" type="text" placeholder="@result.getName()"><br>
 			Note: <input name="grade" type="text" placeholder="@result.grade"><br>
 			ECTS: <input name="ects" type="text" placeholder="@result.ects"><br>
+			Zugehöriges Modul ändern: 
+			<select name="module" required>
+				@for(module <- models.Module.all()) {
+					<option value="@module.id">@module.name</option>
+				}
+			</select><br>
 			<button type="submit" name="editResult" value="@result.id">Änderungen sichern</button>
 		</fieldset>
 	</form>

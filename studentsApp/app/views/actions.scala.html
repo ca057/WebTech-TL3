@@ -2,11 +2,19 @@
 	<li>Modulgruppe
 	<ul>
 		<li><a href="/addmodule">Neue Modulgruppe anlegen</a></li>
-		<li><a href="/editmodule">Modulgruppe bearbeiten oder löschen</a></li>
+		@if(models.Module.all().length == 0) {
+			<li>Modulgruppe bearbeiten oder löschen</li>
+		} else {
+			<li><a href="/editmodule">Modulgruppe bearbeiten oder löschen</a></li>
+		}
 	</ul></li>
 	<li>Ergebnisse
 	<ul>
 		<li><a href="/addresult">Neues Ergebnis hinzufügen</a></li>
-		<li><a href="/editresult">Ergebnis bearbeiten</a></li>
+		@if(models.Module.results.length == 0) {
+			<li>Ergebnis bearbeiten oder löschen</li>
+		} else {
+			<li><a href="/editresult">Ergebnis bearbeiten oder löschen</a></li>
+		}
 	</ul></li>
 </ul>
