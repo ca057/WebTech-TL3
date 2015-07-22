@@ -55,24 +55,19 @@ public class ModuleCtrl extends Controller {
 			return ok(views.html.deletemodule.render("", module));
 		}
 		return ok(views.html.changemodule
-				.render("Die Eingabe konnte nicht verarbeitet werden, bitte treffe eine neue Auswahl."));
+				.render("Die Eingabe konnte nicht verarbeitet werden, eine neue Auswahl muss getroffen werden."));
 	}
 
 	public static Result editModule() {
 		DynamicForm form = Form.form().bindFromRequest();
 		Module module = Module.getModuleById(Integer.parseInt(form.get("editModule")));
 		String name = form.get("name");
-		System.out.println("bisheriger Modulname: " + module.getName());
-		System.out.println("eingegebener Modulname: " + form.get("name"));
 		if (form.get("name").isEmpty()) {
 			name = module.getName();
 		}
 		module.setName(name);
-		System.out.println("Modulname nach Änderung: " + module.getName());
 
 		int ects = 0;
-		System.out.println("bisherige ECTS: " + module.getEcts());
-		System.out.println("eingegebene ECTS: " + form.get("ects"));
 		if (!form.get("ects").isEmpty()) {
 			try {
 				ects = Integer.parseInt(form.get("ects"));
@@ -81,7 +76,6 @@ public class ModuleCtrl extends Controller {
 							module));
 				}
 				module.setEcts(ects);
-				System.out.println("geänderte ECTS: " + module.getEcts());
 			} catch (NumberFormatException e) {
 				return ok(views.html.editmodule.render(
 						"Die eingegebenen ECTS-Punkte sind keine Zahl und konnten nicht verarbeitet werden.", module));
@@ -93,15 +87,7 @@ public class ModuleCtrl extends Controller {
 
 	public static Result deleteModule() {
 		DynamicForm form = Form.form().bindFromRequest();
-		String moduleId = form.get("delMod");
-		if (!moduleId.isEmpty()) {
-			Module.delete(Integer.parseInt(moduleId));
-		} else {
-			return ok(views.html.deletemodule.render(
-					"Das Modul konnte nicht gelöscht werden, bitte treffe eine neue Auswahl.",
-					Module.getModuleById(Integer.parseInt(moduleId))));
-		}
-
+		Module.delete(Integer.parseInt(form.get("delMod")));
 		return Application.index();
 	}
 
