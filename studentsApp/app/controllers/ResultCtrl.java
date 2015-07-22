@@ -20,7 +20,7 @@ public class ResultCtrl extends Controller {
 	}
 
 	public static Result changeResult() {
-		return ok(views.html.changeresult.render());
+		return ok(views.html.changeresult.render(""));
 	}
 
 	public static Result selectResultEditingMode() {
@@ -51,9 +51,9 @@ public class ResultCtrl extends Controller {
 		}
 		// check if grade and ects are larger than 0
 		System.out.println("3");
-		if (ects < 0 || grade <= 0) {
-			return ok(views.html.addresult
-					.render("Die eingegebenen ECTS-Punkte dürfen nicht negativ und die Note muss größer als 0 sein."));
+		if (ects < 0 || grade <= 0 || grade >= 5) {
+			return ok(views.html.addresult.render(
+					"Die eingegebenen ECTS-Punkte dürfen nicht negativ und die Note muss zwischen 0 und 5 sein."));
 		} else {
 			ExamResult.create(new ExamResult(Module.getModuleById(moduleId), name, ects, grade));
 			System.out.println("finished");

@@ -1,0 +1,17 @@
+@(warning: String, result: ExamResult)
+
+@main("studentsApp - Ergebnis löschen"){
+	<h1>Ergebnis @result.getName() löschen</h1>
+	
+	@if(warning.length() != 0) {
+		<p>Ein Fehler ist aufgetreten: @warning</p>
+	}
+	
+	<form action="@routes.ResultCtrl.deleteResult()" method="post">
+		<p>Löschen von @result.getName() bestätigen</p>
+		<button type="submit" name="delRes" value="@result.id">Ergebnis löschen</button>
+	</form>
+	
+	<p><a href="/editresult">zurück zur Auwswahl des Bearbeitungsmodus</a></p>
+	<p><a href="/">zurück zur Startseite</a></p>
+}
