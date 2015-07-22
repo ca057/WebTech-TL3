@@ -199,6 +199,7 @@ public class ExamResult extends Model {
 	 *            The ID of the {@code ExamResult} to delete from database.
 	 */
 	public static void delete(Integer id) {
+		find.ref(id).getModule().removeExamResult(find.ref(id));
 		find.ref(id).delete();
 	}
 }
