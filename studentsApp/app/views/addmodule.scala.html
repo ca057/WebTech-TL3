@@ -4,7 +4,7 @@
 	<h1>Neue Modulgruppe hinzufügen</h1>
 	
 	@if(warning.length() != 0) {
-		<p>Ein Fehler ist aufgetreten, die Modulgruppe muss neu angeleget werden: @warning</p>
+		<p>Ein Fehler ist aufgetreten, die Modulgruppe muss neu angeleget werden: <span class="error">@warning</span></p>
 	}
 	
 	<form action="@routes.ModuleCtrl.addModule()" method="post">

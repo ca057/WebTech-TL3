@@ -32,6 +32,6 @@ table, table * {
 	border-collapse: collapse;
 }
 
-form, fieldset {
-
+span.error {
+	color: #e64a19;
 }

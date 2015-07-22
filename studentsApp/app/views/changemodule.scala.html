@@ -4,7 +4,7 @@
 	<h1>Modulgruppe bearbeiten</h1>
 	
 	@if(warning.length() != 0) {
-		<p>Ein Fehler ist aufgetreten: @warning</p>
+		<p>Ein Fehler ist aufgetreten: <span class="error">@warning</span></p>
 	}
 	
 	<form action="@routes.ModuleCtrl.selectModuleEditingMode()" method="post">

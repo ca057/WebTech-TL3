@@ -4,7 +4,7 @@
 	<h1>Ergebnis @result.getName() löschen</h1>
 	
 	@if(warning.length() != 0) {
-		<p>Ein Fehler ist aufgetreten: @warning</p>
+		<p>Ein Fehler ist aufgetreten: <span class="error">@warning</span></p>
 	}
 	
 	<form action="@routes.ResultCtrl.deleteResult()" method="post">
