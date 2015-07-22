@@ -58,12 +58,22 @@ public class ModuleCtrl extends Controller {
 				.render("Die Eingabe konnte nicht verarbeitet werden, bitte treffe eine neue Auswahl."));
 	}
 
-	public static Result editModule(int id) {
+	public static Result editModule() {
 		return TODO;
 	}
 
-	public static Result deleteModule(int id) {
-		return TODO;
+	public static Result deleteModule() {
+		DynamicForm form = Form.form().bindFromRequest();
+		String moduleId = form.get("delMod");
+		if (!moduleId.isEmpty()) {
+			Module.delete(Integer.parseInt(moduleId));
+		} else {
+			return ok(views.html.deletemodule.render(
+					"Das Modul konnte nicht gelöscht werden, bitte treffe eine neue Auswahl.",
+					Module.getModuleById(Integer.parseInt(moduleId))));
+		}
+
+		return Application.index();
 	}
 
 }
