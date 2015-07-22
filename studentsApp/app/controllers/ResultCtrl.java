@@ -8,7 +8,7 @@ import play.mvc.Result;
 
 public class ResultCtrl extends Controller {
 
-	static Form<ExamResult> moduleForm = Form.form(ExamResult.class);
+	static Form<ExamResult> resultForm = Form.form(ExamResult.class);
 
 	public ResultCtrl() {
 		// TODO Auto-generated constructor stub

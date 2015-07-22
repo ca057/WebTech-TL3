@@ -28,24 +28,24 @@ public class ExamResult extends Model {
 	 */
 	@Id
 	@Column(name = "RESULT_ID")
-	private Integer id;
+	public Integer id;
 	/**
 	 * The name attribute of the exam result. Must not be <code>null</code>.
 	 */
 	@Required
-	private String name;
+	public String name;
 	/**
 	 * The number of ECTS associated with this module group. Must not be
 	 * <code>null</code> or less than zero.
 	 */
 	@Required
-	private int ects;
+	public int ects;
 	/**
 	 * The grade granted to this exam. Must not be smaller or equal to zero or
 	 * greater than five.
 	 */
 	@Required
-	private float grade;
+	public float grade;
 	/**
 	 * The single module group associated with this exam result. Must not be
 	 * <code>null</code>. If exam result is removed, module group will be
@@ -54,7 +54,7 @@ public class ExamResult extends Model {
 	@Required
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "MODULE_ID")
-	private Module module;
+	public Module module;
 
 	/**
 	 * Constructor of {@code ExamResult}.
@@ -173,6 +173,14 @@ public class ExamResult extends Model {
 	 */
 	public static List<ExamResult> all() {
 		return find.all();
+	}
+
+	/**
+	 * @param id
+	 * @return A {@code ExamResult} specified by its ID.
+	 */
+	public static ExamResult getExamResultById(Integer id) {
+		return find.ref(id);
 	}
 
 	/**
