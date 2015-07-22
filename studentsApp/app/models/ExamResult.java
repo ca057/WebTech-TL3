@@ -156,7 +156,7 @@ public class ExamResult extends Model {
 	 * @return The total average grade as {@code Float}, or <code>0</code> if no
 	 *         ECTS were achieved yet.
 	 */
-	public Float getTotalAverageGrade() {
+	public static Float getTotalAverageGrade() {
 		float sumOfGradeTimesEcts = 0;
 		float sumOfEcts = 0;
 
