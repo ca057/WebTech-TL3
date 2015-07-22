@@ -17,8 +17,8 @@ GET		/addresult					controllers.ResultCtrl.newResult()
 POST	/addresult					controllers.ResultCtrl.addResult()
 GET		/editresult					controllers.ResultCtrl.changeResult()
 POST	/changeresult				controllers.ResultCtrl.selectResultEditingMode()
-POST	/editresult/:id/edit		controllers.ResultCtrl.editResult(id: Int)
-POST	/editresult/:id/delete		controllers.ResultCtrl.deleteResult(id: Int)
+POST	/editresult					controllers.ResultCtrl.editResult()
+POST	/deleteresult				controllers.ResultCtrl.deleteResult()
 
 
 # Map static resources from the /public folder to the /assets URL path
