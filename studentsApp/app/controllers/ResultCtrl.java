@@ -51,7 +51,7 @@ public class ResultCtrl extends Controller {
 			return ok(
 					views.html.addmodule.render("Die eingegebenen ECTS-Punkte oder die Note muss größer als 0 sein."));
 		} else {
-			ExamResult.create(new ExamResult(module, name, ects, grade));
+			// ExamResult.create(new ExamResult(module, name, ects, grade));
 			return Application.index();
 		}
 	}
