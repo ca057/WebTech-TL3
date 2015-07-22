@@ -1,12 +1,20 @@
-<h1>Neue Modulgruppe hinzufügen</h1>
+@(warning: String)
 
-<form action="@routes.ModuleCtrl.addModule()" method="post">
-	<fieldset>
-		<legend>Neue Modulgruppe anlegen</legend>
-		Name: <input name="name" type="text" required><br>
-		ECTS: <input name="ects" type="text" required><br>
-		<button type="submit">Modulgruppe hinzufügen</button>
-	</fieldset>
-</form>
-
-<p><a href="/">zurück zur Startseite</a></p>
+@main("studentsApp - Neue Modulgruppe hinzufügen") {
+	<h1>Neue Modulgruppe hinzufügen</h1>
+	
+	@if(warning.length() != 0) {
+		<p>Ein Fehler ist aufgetreten: @warning</p>
+	}
+	
+	<form action="@routes.ModuleCtrl.addModule()" method="post">
+		<fieldset>
+			<legend>Neue Modulgruppe anlegen</legend>
+			Name: <input name="name" type="text" required><br>
+			ECTS: <input name="ects" type="text" required><br>
+			<button type="submit">Modulgruppe hinzufügen</button>
+		</fieldset>
+	</form>
+	
+	<p><a href="/">zurück zur Startseite</a></p>
+}

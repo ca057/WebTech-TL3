@@ -25,7 +25,7 @@ public class ResultCtrl extends Controller {
 		return ok(views.html.editresult.render());
 	}
 
-	public static Result addResult(int moduleid) {
+	public static Result addResult() {
 		return TODO;
 	}
 

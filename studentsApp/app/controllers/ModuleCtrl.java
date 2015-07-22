@@ -19,7 +19,7 @@ public class ModuleCtrl extends Controller {
 	}
 
 	public static Result newModule() {
-		return ok(views.html.addmodule.render());
+		return ok(views.html.addmodule.render(""));
 	}
 
 	public static Result changeModule() {
@@ -28,9 +28,21 @@ public class ModuleCtrl extends Controller {
 
 	public static Result addModule() {
 		DynamicForm dynamicForm = Form.form().bindFromRequest();
-		System.out.println(dynamicForm.get("name"));
-		System.out.println(dynamicForm.get("ects"));
-		return Application.index();
+		String name = dynamicForm.get("name");
+		int ects = 0;
+		try {
+			ects = Integer.parseInt(dynamicForm.get("ects"));
+		} catch (NumberFormatException e) {
+			return ok(views.html.addmodule
+					.render("Die eingegebenen ECTS-Punkte sind keine Zahl und konnten nicht verarbeitet werden."));
+		}
+
+		if (ects <= 0) {
+			return ok(views.html.addmodule.render("Die eingegebenen ECTS-Punkte müssen größer als 0 sein."));
+		} else {
+			Module.create(new Module(name, ects));
+			return Application.index();
+		}
 	}
 
 	public static Result editModule(long id) {
