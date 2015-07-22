@@ -24,7 +24,7 @@ public class ResultCtrl extends Controller {
 	}
 
 	public static Result changeResult() {
-		return ok(views.html.editresult.render());
+		return ok(views.html.changeresult.render());
 	}
 
 	public static Result addResult() {
