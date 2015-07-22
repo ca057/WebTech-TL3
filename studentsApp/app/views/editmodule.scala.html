@@ -1,12 +1,20 @@
 @(warning: String, module: Module)
 
 @main("studentsApp - Modulgruppe bearbeiten"){
-	<h1>Modulgruppe bearbeiten</h1>
+	<h1>Modulgruppe @module.name bearbeiten</h1>
 	
 	@if(warning.length() != 0) {
 		<p>Ein Fehler ist aufgetreten, das Ergebnis muss neu angelegt werden: @warning</p>
 	}
 
+	<form action="@routes.ModuleCtrl.editModule()" method="post">
+		<fieldset>
+			<legend>Modulgruppe @module.name bearbeiten</legend>
+			Name: <input name="name" type="text" placeholder="@module.getName()"><br>
+			ECTS: <input name="ects" type="text" placeholder="@module.getEcts()"><br>
+			<button type="submit" name="editModule" value="@module.id">Änderungen sichern</button>
+		</fieldset>
+	</form>
 	
 	<p><a href="/">zurück zur Startseite</a></p>
 }

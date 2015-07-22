@@ -8,9 +8,8 @@
 	}
 	
 	<form action="@routes.ModuleCtrl.deleteModule()" method="post">
-		<p>Löschen bestätigen</p>
-		<input type="radio" name="delMod" value="@module.id" id="confirm" required><label for="delMod">@module.getName() löschen</label><br>
-		<button type="submit">Modulgruppe löschen</button>
+		<p>Löschen von @module.getName() bestätigen</p>
+		<button type="submit" name="delMod" value="@module.id">Modulgruppe löschen</button>
 	</form>
 	
 	<p><a href="/editmodule">zurück zur Auwswahl des Bearbeitungsmodus</a></p>

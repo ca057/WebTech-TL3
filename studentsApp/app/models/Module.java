@@ -2,6 +2,7 @@ package models;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -46,7 +47,7 @@ public class Module extends Model {
 	 * will also be removed.
 	 */
 	@OneToMany(mappedBy = "module", cascade = CascadeType.REMOVE)
-	public static List<ExamResult> results;
+	public static List<ExamResult> results = new ArrayList<ExamResult>();
 
 	/**
 	 * Constructor of {@code Module}.
@@ -160,16 +161,19 @@ public class Module extends Model {
 	/**
 	 * @return The current progress on this module as {@code Float}.
 	 */
-	public static Float getModuleProgress() {
+	public Float getModuleProgress() {
 		int sumOfResultEcts = 0;
 
 		for (ExamResult result : results) {
 			sumOfResultEcts += result.getEcts();
 		}
 
-		float result = (sumOfResultEcts / ects) * 100;
-		BigDecimal tmp = new BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN);
-		result = tmp.floatValue();
+		float result = 0;
+		if (sumOfResultEcts != 0) {
+			result = (sumOfResultEcts / ects) * 100;
+			BigDecimal tmp = new BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN);
+			result = tmp.floatValue();
+		}
 
 		return result;
 	}

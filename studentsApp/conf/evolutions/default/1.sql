@@ -15,7 +15,6 @@ create table exam_result (
 create table module (
   MODULE_ID                 integer not null,
   name                      varchar(255),
-  ects                      integer,
   constraint pk_module primary key (MODULE_ID))
 ;
 
