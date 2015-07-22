@@ -1,21 +1,29 @@
-<h1>Neues Ergebnis hinzufügen</h1>
+@(warning: String)
 
-<form action="@routes.ResultCtrl.addResult()" method="post">
-	<fieldset>
-		<legend>Neues Ergebnis anlegen</legend>
-		Name: <input name="name" type="text" required><br>
-		Note: <input name="grade" type="text" required><br>
-		ECTS: <input name="ects" type="text" required><br>
-		Zugehöriges Modul auswählen: 
-		<select name="module" required>
-			<option>Heino</option>
-			<option>Michael Jackson</option>
-			<option>Tom Waits</option>
-			<option>Nina Hagen</option>
-			<option>Marianne Rosenberg</option>
-		</select><br>
-		<button type="submit">Ergebnis zu Modulgruppe hinzufügen</button>
-	</fieldset>
-</form>
-
-<p><a href="/">zurück zur Startseite</a></p>
+@main("studentsApp - Neues Ergebnis hinzufügen"){
+	<h1>Neues Ergebnis hinzufügen</h1>
+	
+	@if(warning.length() != 0) {
+		<p>Ein Fehler ist aufgetreten, das Ergebnis muss neu angelegt werden: @warning</p>
+	}
+	
+	<form action="@routes.ResultCtrl.addResult()" method="post">
+		<fieldset>
+			<legend>Neues Ergebnis anlegen</legend>
+			Name: <input name="name" type="text" required><br>
+			Note: <input name="grade" type="text" required><br>
+			ECTS: <input name="ects" type="text" required><br>
+			Zugehöriges Modul auswählen: 
+			<select name="module" required>
+				<option>Heino</option>
+				<option>Michael Jackson</option>
+				<option>Tom Waits</option>
+				<option>Nina Hagen</option>
+				<option>Marianne Rosenberg</option>
+			</select><br>
+			<button type="submit">Ergebnis zu Modulgruppe hinzufügen</button>
+		</fieldset>
+	</form>
+	
+	<p><a href="/">zurück zur Startseite</a></p>
+}
