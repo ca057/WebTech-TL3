@@ -7,7 +7,7 @@ GET     /                           controllers.Application.index()
 
 
 GET		/addmodule					controllers.ModuleCtrl.newModule()
-POST	/addmodule/add				controllers.ModuleCtrl.addModule(name: String, ects: Int)
+POST	/						controllers.ModuleCtrl.addModule()
 GET		/editmodule					controllers.ModuleCtrl.changeModule()
 POST	/editmodule/:id/edit		controllers.ModuleCtrl.editModule(id: Int)
 POST	/editmodule/:id/delete		controllers.ModuleCtrl.deleteModule(id: Int)

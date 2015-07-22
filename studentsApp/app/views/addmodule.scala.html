@@ -1,6 +1,6 @@
 <h1>Neue Modulgruppe hinzufügen</h1>
 
-<form action="/addmodule/add" method="post">
+<form action="@routes.ModuleCtrl.addModule()" method="post">
 	<fieldset>
 		<legend>Neue Modulgruppe anlegen</legend>
 		Name: <input name="name" type="text" required><br>
