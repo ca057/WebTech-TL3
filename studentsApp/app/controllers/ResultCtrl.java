@@ -1,6 +1,7 @@
 package controllers;
 
 import models.ExamResult;
+import models.Module;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -29,7 +30,7 @@ public class ResultCtrl extends Controller {
 	public static Result addResult() {
 		DynamicForm dynamicForm = Form.form().bindFromRequest();
 		String name = dynamicForm.get("name");
-		String module = dynamicForm.get("module");
+		int moduleId = Integer.parseInt(dynamicForm.get("module"));
 		int ects = 0;
 		// check if ects is number
 		try {
@@ -47,11 +48,11 @@ public class ResultCtrl extends Controller {
 					.render("Die eingegebene Note ist keine Zahl und konnte nicht verarbeitet werden."));
 		}
 		// check if grade and ects are larger than 0
-		if (ects <= 0 || grade <= 0) {
-			return ok(
-					views.html.addmodule.render("Die eingegebenen ECTS-Punkte oder die Note muss größer als 0 sein."));
+		if (ects < 0 || grade <= 0) {
+			return ok(views.html.addmodule
+					.render("Die eingegebenen ECTS-Punkte dürfen nicht negativ und die Note muss größer als 0 sein."));
 		} else {
-			// ExamResult.create(new ExamResult(module, name, ects, grade));
+			ExamResult.create(new ExamResult(Module.getModuleById(moduleId), name, ects, grade));
 			return Application.index();
 		}
 	}

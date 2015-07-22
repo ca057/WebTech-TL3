@@ -15,11 +15,9 @@
 			ECTS: <input name="ects" type="text" required><br>
 			Zugehöriges Modul auswählen: 
 			<select name="module" required>
-				<option>Heino</option>
-				<option>Michael Jackson</option>
-				<option>Tom Waits</option>
-				<option>Nina Hagen</option>
-				<option>Marianne Rosenberg</option>
+				@for(module <- models.Module.all()) {
+					<option value="@module.id">@module.name</option>
+				}
 			</select><br>
 			<button type="submit">Ergebnis zu Modulgruppe hinzufügen</button>
 		</fieldset>

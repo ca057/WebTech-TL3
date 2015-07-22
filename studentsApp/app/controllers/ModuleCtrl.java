@@ -22,30 +22,43 @@ public class ModuleCtrl extends Controller {
 		return ok(views.html.addmodule.render(""));
 	}
 
-	public static Result changeModule() {
-		return ok(views.html.editmodule.render());
-	}
-
 	public static Result addModule() {
-		DynamicForm dynamicForm = Form.form().bindFromRequest();
-		String name = dynamicForm.get("name");
+		DynamicForm form = Form.form().bindFromRequest();
+		String name = form.get("name");
 		int ects = 0;
 		try {
-			ects = Integer.parseInt(dynamicForm.get("ects"));
+			ects = Integer.parseInt(form.get("ects"));
 		} catch (NumberFormatException e) {
 			return ok(views.html.addmodule
 					.render("Die eingegebenen ECTS-Punkte sind keine Zahl und konnten nicht verarbeitet werden."));
 		}
 
-		if (ects <= 0) {
-			return ok(views.html.addmodule.render("Die eingegebenen ECTS-Punkte müssen größer als 0 sein."));
+		if (ects < 0) {
+			return ok(views.html.addmodule.render("Die eingegebenen ECTS-Punkte dürfen nicht negativ sein."));
 		} else {
 			Module.create(new Module(name, ects));
 			return Application.index();
 		}
 	}
 
-	public static Result editModule(long id) {
+	public static Result changeModule() {
+		return ok(views.html.changemodule.render(""));
+	}
+
+	public static Result selectModuleEditingMode() {
+		DynamicForm form = Form.form().bindFromRequest();
+		String value = form.get("moduleEditingMode");
+		Module module = Module.getModuleById(Integer.parseInt(form.get("module")));
+		if ("edit".equals(value)) {
+			return ok(views.html.editmodule.render("", module));
+		} else if ("delete".equals(value)) {
+			return ok(views.html.deletemodule.render("", module));
+		}
+		return ok(views.html.changemodule
+				.render("Die Eingabe konnte nicht verarbeitet werden, bitte treffe eine neue Auswahl."));
+	}
+
+	public static Result editModule(int id) {
 		return TODO;
 	}
 
