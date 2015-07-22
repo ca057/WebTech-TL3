@@ -165,6 +165,14 @@ public class Module extends Model {
 	}
 
 	/**
+	 * @param id
+	 * @return A {@code Module} specified by its ID.
+	 */
+	public static Module getModuleById(Integer id) {
+		return find.ref(id);
+	}
+
+	/**
 	 * Create a {@code Module} in database.
 	 * 
 	 * @param module

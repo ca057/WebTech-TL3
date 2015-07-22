@@ -176,6 +176,14 @@ public class ExamResult extends Model {
 	}
 
 	/**
+	 * @param id
+	 * @return A {@code ExamResult} specified by its ID.
+	 */
+	public static ExamResult getExamResultById(Integer id) {
+		return find.ref(id);
+	}
+
+	/**
 	 * Create an {@code ExamResult} in database. The ExamResult will also be
 	 * associated with its {@code Module} automatically.
 	 * 
