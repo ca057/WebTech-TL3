@@ -10,14 +10,6 @@ public class ModuleCtrl extends Controller {
 
 	static Form<Module> moduleForm = Form.form(Module.class);
 
-	public ModuleCtrl() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public static Result modules() {
-		return TODO;
-	}
-
 	public static Result newModule() {
 		return ok(views.html.addmodule.render(""));
 	}
