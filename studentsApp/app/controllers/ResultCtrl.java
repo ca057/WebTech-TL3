@@ -85,7 +85,7 @@ public class ResultCtrl extends Controller {
 		if (!form.get("grade").isEmpty()) {
 			try {
 				float grade = Float.valueOf(form.get("grade"));
-				if (grade < 0) {
+				if (grade <= 0 || grade >= 5) {
 					return ok(views.html.editresult.render("Die eingegebenen ECTS-Punkte dürfen nicht kleiner 0 sein.",
 							result));
 				}
