@@ -35,3 +35,7 @@ table, table * {
 span.error {
 	color: #e64a19;
 }
+
+fieldset * {
+	margin: 5px;
+}

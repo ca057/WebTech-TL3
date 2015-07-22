@@ -10,10 +10,12 @@ import play.mvc.Result;
 /**
  * Controller for managing all actions associated with {@link ExamResult}s.
  *
+ * @author Christian
  */
 public class ResultCtrl extends Controller {
 
 	/**
+	 * The main page for adding new results is rendered and returned.
 	 * 
 	 * @return the rendered view for adding new results with status ok
 	 */
@@ -21,23 +23,43 @@ public class ResultCtrl extends Controller {
 		return ok(views.html.addresult.render(""));
 	}
 
+	/**
+	 * The page for selecting which action should be performed (edit or delete
+	 * result) is rendered and returned.
+	 * 
+	 * @return the rendered view for selecting the next action
+	 */
 	public static Result changeResult() {
 		return ok(views.html.changeresult.render(""));
 	}
 
+	/**
+	 * Evaluates the form for selecting the next action. Possible options are
+	 * editing or deleting a result.
+	 * 
+	 * @return the view for editing or deleting results, the selection view with
+	 *         an error message if the form could not be evaluated
+	 */
 	public static Result selectResultEditingMode() {
 		DynamicForm form = Form.form().bindFromRequest();
-		String value = form.get("resultEditingMode");
 		ExamResult result = ExamResult.getExamResultById(Integer.parseInt(form.get("result")));
-		if ("edit".equals(value)) {
+		if ("edit".equals(form.get("resultEditingMode"))) {
 			return ok(views.html.editresult.render("", result));
-		} else if ("delete".equals(value)) {
+		} else if ("delete".equals(form.get("resultEditingMode"))) {
 			return ok(views.html.deleteresult.render("", result));
 		}
 		return ok(views.html.changeresult
 				.render("Die Eingabe konnte nicht verarbeitet werden, eine neue Auswahl muss getroffen werden."));
 	}
 
+	/**
+	 * Evaluates the form of adding a new result. If all inputs are valid, a new
+	 * result is created. If any problem occurs, the view for adding results is
+	 * shown again with a specific error message.
+	 * 
+	 * @return the start page if new result could be added, page for adding
+	 *         results with error message otherwise
+	 */
 	public static Result addResult() {
 		DynamicForm form = Form.form().bindFromRequest();
 		String name = form.get("name");
@@ -68,6 +90,14 @@ public class ResultCtrl extends Controller {
 		}
 	}
 
+	/**
+	 * Evaluates the form for editing results. Every valid input is added
+	 * immediately, if an error occurs, the edit page is shown again with a
+	 * specific warning.
+	 * 
+	 * @return the start page if new result could be added, page for editing
+	 *         results otherwise
+	 */
 	public static Result editResult() {
 		DynamicForm form = Form.form().bindFromRequest();
 		ExamResult result = ExamResult.getExamResultById(Integer.parseInt(form.get("editResult")));
@@ -111,6 +141,12 @@ public class ResultCtrl extends Controller {
 
 	}
 
+	/**
+	 * If an user submits deleting a result, this method delegates the action to
+	 * the {@link ExamResult}.
+	 * 
+	 * @return the main page after deleting the result
+	 */
 	public static Result deleteResult() {
 		DynamicForm form = Form.form().bindFromRequest();
 		ExamResult.delete(Integer.parseInt(form.get("delRes")));
