@@ -1,5 +1,7 @@
 package models;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -153,6 +155,44 @@ public class Module extends Model {
 		}
 
 		return (sumOfEcts != 0) ? sumOfGradeTimesEcts / sumOfEcts : 0;
+	}
+
+	/**
+	 * @return The current progress on this module as {@code Float}.
+	 */
+	public Float getModuleProgress() {
+		int sumOfResultEcts = 0;
+
+		for (ExamResult result : results) {
+			sumOfResultEcts += result.getEcts();
+		}
+
+		float result = (sumOfResultEcts / ects) * 100;
+		BigDecimal tmp = new BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN);
+		result = tmp.floatValue();
+
+		return result;
+	}
+
+	/**
+	 * @return The current overall progress of the student as {@code Float}.
+	 */
+	public Float getOverallProgress() {
+		int sumOfModuleEcts = 0;
+		int sumOfResultEcts = 0;
+
+		for (Module module : all()) {
+			sumOfModuleEcts += module.getEcts();
+		}
+		for (ExamResult result : ExamResult.all()) {
+			sumOfResultEcts += result.getEcts();
+		}
+
+		float result = (sumOfModuleEcts != 0) ? (sumOfResultEcts / sumOfModuleEcts) * 100 : 0;
+		BigDecimal tmp = new BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN);
+		result = tmp.floatValue();
+
+		return result;
 	}
 
 	public static Finder<Integer, Module> find = new Finder<Integer, Module>(Integer.class, Module.class);
