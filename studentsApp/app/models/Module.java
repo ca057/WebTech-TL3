@@ -171,7 +171,7 @@ public class Module extends Model {
 		}
 
 		float result = 0;
-		if (sumOfResultEcts != 0) {
+		if (ects != 0) {
 			result = (sumOfResultEcts / ects) * 100;
 			BigDecimal tmp = new BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN);
 			result = tmp.floatValue();
