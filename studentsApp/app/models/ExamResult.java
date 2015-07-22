@@ -115,6 +115,7 @@ public class ExamResult extends Model {
 			throw new IllegalArgumentException("Illegal parameters for  name");
 		}
 		this.name = name;
+
 	}
 
 	/**
@@ -127,6 +128,7 @@ public class ExamResult extends Model {
 			throw new IllegalArgumentException("Illegal parameters for ects");
 		}
 		this.ects = ects;
+
 	}
 
 	/**
@@ -139,6 +141,7 @@ public class ExamResult extends Model {
 			throw new IllegalArgumentException("Illegal arguments for grade.");
 		}
 		this.grade = grade;
+
 	}
 
 	/**
