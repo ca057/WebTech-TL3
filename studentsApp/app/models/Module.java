@@ -39,14 +39,14 @@ public class Module extends Model {
 	 * <code>null</code> or less than zero.
 	 */
 	@Required
-	public int ects;
+	public static int ects;
 	/**
 	 * A list of exam results associated with module group. Can be
 	 * <code>null</code>. If module group is removed, associated exam results
 	 * will also be removed.
 	 */
 	@OneToMany(mappedBy = "module", cascade = CascadeType.REMOVE)
-	public List<ExamResult> results;
+	public static List<ExamResult> results;
 
 	/**
 	 * Constructor of {@code Module}.
