@@ -116,6 +116,14 @@ public class Module extends Model {
 	}
 
 	/**
+	 * @return A {@code List} of all {@code ExamResult}s associated with this
+	 *         module.
+	 */
+	public List<ExamResult> getExamResults() {
+		return results;
+	}
+
+	/**
 	 * Get the average grade for results in this module.
 	 * 
 	 * <p>
